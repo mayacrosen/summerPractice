@@ -24,11 +24,22 @@ function updateScore(humanMove, computerMove, winner) {
 }
 
 function endGame(victor) {
-    spare.textContent = victor.toUpperCase() + " won!";
+    spare.textContent = victor + " won! Would you like to play again?";
     spare.style.fontSize = "150%";
+
+    let yesBtn = document.createElement("button");
+    yesBtn.addEventListener("click", startNewGame);
+    spare.appendChild(yesBtn);
+
     while(rounds.children.length) {
         rounds.removeChild(rounds.firstChild);
     }
+}
+
+function startNewGame() {
+    spare.style.fontSize = "100%";
+    spare.textContent = "No moves have been played"
+    scoreboard.textContent = "Human: 0. Computer: 0"
 }
 
 function playRound() {
@@ -46,6 +57,11 @@ function playRound() {
     else if (diff == -1 || diff == 2) {
         computerScore++;
         updateScore(humanChoice, computerChoice, "computer");
+    }
+    console.log(humanScore);
+    console.log(computerScore);
+    if (humanScore >= 5 || computerScore >= 5) {
+        endGame();
     }
 }
 
