@@ -8,13 +8,27 @@ function getComputerChoice() {
 }
 
 function updateScore(humanMove, computerMove, winner) {
+    spare.textContent = choices[computerMove -1];
     scoreboard.textContent = "Player: " + humanScore + " Computer: " + computerScore;
     let aRound = document.createElement("li");
     aRound.textContent = "Human played " + choices[humanMove-1] + ". Computer played: " + choices[computerMove-1] + ". " + winner + " wins round";
     if (winner == "player") {
         aRound.style.color = "green";
+        scoreboard.style.color = "green";
+    }
+    else {
+        aRound.style.color = "black";
+        scoreboard.style.color = "black";
     }
     rounds.appendChild(aRound);
+}
+
+function endGame(victor) {
+    spare.textContent = victor.toUpperCase() + " won!";
+    spare.style.fontSize = "150%";
+    while(rounds.children.length) {
+        rounds.removeChild(rounds.firstChild);
+    }
 }
 
 function playRound() {
@@ -40,14 +54,8 @@ let spare = document.querySelector("#spare");
 let rounds = document.querySelector("#rounds");
 
 const rockBtn = document.querySelector("#rock");
-rockBtn.addEventListener("click", function(){
-    spare.textContent = "rock";
-});
+rockBtn.addEventListener("click", playRound);
 const paperBtn = document.querySelector("#paper");
-paperBtn.addEventListener("click", function() {
-    spare.textContent = "paper";
-});
+paperBtn.addEventListener("click", playRound);
 const scissorsBtn = document.querySelector("#scissors");
-scissorsBtn.addEventListener("click", function() {
-    spare.textContent = "scissors";
-});
+scissorsBtn.addEventListener("click", playRound);
