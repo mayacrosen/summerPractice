@@ -1,0 +1,19 @@
+.calcCase {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.row {
+    display: flex;
+    flex: auto;
+}
+
+.cell {
+    flex: auto;
+}
+
+.calcButton {
+    color:cadetblue;
+    border-color: black;
+}
